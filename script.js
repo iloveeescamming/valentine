@@ -295,7 +295,7 @@ function handleNo() {
             kittyAnimation.style.display = 'block';  // Show the kitty GIF container
         }, 1000); // Match the fade-out time (1s)
     }
-    function showLetter() {
+    function showLetter() { 
         const loveLetter = document.getElementById("loveLetter");
         loveLetter.style.display = "block";
         loveLetter.classList.add('fade-in'); // Apply fade-in effect
@@ -354,3 +354,41 @@ document.querySelectorAll("button").forEach(button => {
         clickSound.play();
     });
 });
+function winGame() {
+    // Fade out maze container
+    mazeContainer.classList.add('fade-out');
+    
+    setTimeout(function() {
+        mazeContainer.style.display = 'none';  // Hide maze
+        mainContainer.style.display = 'block'; // Show main UI
+        mainContainer.classList.add('fade-in'); // Add fade-in class for smooth transition
+
+        // Show Hello Kitty GIF with animation
+        let kittyAnimation = document.getElementById("kittyAnimation");
+        kittyAnimation.style.display = 'block';  // Show the kitty GIF container
+    }, 1000); // Match the fade-out time (1s)
+}
+document.addEventListener("mousemove", function(e) {
+    let sparkle = document.createElement("div");
+    sparkle.classList.add("cursor-sparkle");
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 600);
+});
+function winGame() {
+    // Fade out maze container
+    mazeContainer.classList.add('fade-out');
+
+    setTimeout(function() {
+        mazeContainer.style.display = 'none';  // Hide maze
+        document.getElementById("mazeTitle").style.display = "none"; // Hide text
+        mainContainer.style.display = 'block'; // Show main UI
+        mainContainer.classList.add('fade-in'); // Add fade-in class for smooth transition
+
+        // Show Hello Kitty GIF
+        let kittyAnimation = document.getElementById("kittyAnimation");
+        kittyAnimation.style.display = 'block';
+    }, 1000); // Matches fade-out time
+}
