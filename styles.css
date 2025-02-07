@@ -1,0 +1,738 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Pacifico', cursive; /* Change to Pacifico or any cute font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://c4.wallpaperflare.com/wallpaper/908/631/590/hello-kitty-1440x900-anime-hello-kitty-hd-art-wallpaper-preview.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Title and Other Texts Styling */
+.title, .heart, .message, button {
+    font-family: 'Pacifico', cursive;
+    color: #ff80ab;
+}
+
+button {
+    font-family: 'Pacifico', cursive;
+}
+
+
+/* Kitty GIF Positioning to the Left */
+.kitty-container {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 150px;
+    transition: transform 0.3s ease, animation 0.3s ease-in-out;
+}
+
+/* Hover Animation for the Hello Kitty GIF */
+.kitty-container:hover {
+    transform: scale(1.1); /* Slightly grow the image */
+}
+
+/* Maze Container */
+.maze-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background-color: #ffebf3;
+    border: 3px solid #ff80ab;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Maze Grid */
+.maze {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+/* Player (Kitty Theme) */
+#player {
+    width: 40px;
+    height: 40px;
+    background-color: #ffebee;
+    border-radius: 50%;
+    position: absolute;
+    background-image: url('hellokitty.png'); /* Cute Hello Kitty icon */
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* End Point */
+.end {
+    width: 40px;
+    height: 40px;
+    background-color: #ff4081;
+    border-radius: 50%;
+    position: absolute;
+    left: 360px;
+    top: 360px;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Hello_Kitty_Logo.svg/1200px-Hello_Kitty_Logo.svg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+}
+
+/* End Point Hover Effect */
+.end:hover {
+    transform: scale(1.1); /* Slight scale effect */
+    transition: transform 0.3s ease;
+}
+
+/* Main UI Box */
+.container, .next-page, love-letter{
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 60px 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    position: relative;
+    display: none;
+    animation: fadeIn 1s ease-in;
+    
+}
+
+/* Title */
+.title {
+    font-size: 3rem;
+    color: #ff80ab;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Heart Animation */
+.heart-container {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fadeIn 1s ease-in;
+}
+
+.heart {
+    width: 150px;
+    height: 150px;
+    background-color: #ff80ab;
+    transform: rotate(45deg);
+    animation: beat 1.2s infinite alternate;
+}
+
+.heart::before, .heart::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-color: #ff80ab;
+    border-radius: 50%;
+}
+
+.heart::before { top: -75px; left: 0; }
+.heart::after { top: 0; left: 75px; }
+
+@keyframes beat {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/* Fade-In and Fade-Out Effects */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Apply fade-in effect on elements */
+.fade-in {
+    animation: fadeIn 1s ease-in forwards;
+}
+
+/* Apply fade-out effect on elements */
+.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 40px;
+}
+
+button {
+    padding: 20px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effects for Buttons */
+.yes {
+    background-color: #ff80ab;
+    color: #fff;
+}
+
+.yes:hover {
+    background-color: #f50057;
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+.no {
+    background-color: #f3e5f5;
+    color: #333;
+}
+
+.no:hover {
+    background-color: #e1bee7;
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+/* Hover Animation for the Maze Cells */
+.maze div:hover {
+    background-color: #ff80ab;
+    transition: background-color 0.3s ease;
+}
+
+/* Add a slight "pulse" effect to buttons and other clickable items */
+button:active, .maze div:active {
+    transform: scale(0.95); /* Slight shrink when clicked */
+}
+
+/* Follow Mouse Animation */
+.kitty-container.follow-mouse {
+    position: absolute;
+    transition: left 0.1s ease-in-out, top 0.1s ease-in-out;
+}
+
+/* Confetti Effect Animation */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* Floating Hearts Animation */
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Floating hearts animation */
+.heart {
+    position: absolute;
+    animation: heartFloat 2s forwards;
+}
+
+/* Confetti Animation (Optional for Fun) */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff80ab;
+    animation: confettiFall 3s ease-in-out infinite;
+    opacity: 0;
+}
+
+.confetti:nth-child(odd) {
+    background-color: #ff4081;
+}
+/* Kitty Animation Container */
+.kitty-animation {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;  /* Hidden initially */
+}
+
+/* Kitty Image Float */
+.kitty-float {
+    animation: kittyFloat 2s ease-in-out infinite;
+}
+
+/* Kitty GIF Styling */
+.kitty-gif {
+    width: 150px;
+    height: 150px;
+    animation: kittyBounce 1.5s ease-in-out infinite;
+}
+
+/* Heart Float */
+.heart-float {
+    margin-top: 20px;
+    animation: heartsFloat 4s ease-in-out infinite;
+}
+
+.floating-heart {
+    width: 40px;
+    height: 40px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Hello_Kitty_Logo.svg/1200px-Hello_Kitty_Logo.svg.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    animation: heartFloat 4s ease-in-out infinite;
+}
+
+/* Keyframes for Heart Floating */
+@keyframes heartsFloat {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for Kitty Bounce */
+@keyframes kittyBounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for Kitty Float */
+@keyframes kittyFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Fade In Effect for the Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-in forwards;
+}
+/* Spin Animation */
+@keyframes spinKitty {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Kitty Container */
+.kitty-container {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 150px;
+    transition: transform 0.3s ease, animation 0.3s ease-in-out;
+}
+
+/* When Clicked, Apply the Spin Animation */
+.kitty-container.spin {
+    animation: spinKitty 0.5s ease-in-out;
+}
+/* Kitty Animation (Positioning Above the UI Box) */
+.kitty-animation {
+    position: absolute;
+    top: 5%; /* Adjust this value to your liking */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Hidden initially */
+    text-align: center;
+}
+/* Heart animation container */
+.heart-animation-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* Floating hearts animation */
+.floating-heart {
+    width: 40px;
+    height: 40px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Hello_Kitty_Logo.svg/1200px-Hello_Kitty_Logo.svg.png') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    animation: heartFloat 3s ease-in-out forwards;
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+    }
+}
+/* Confetti Styling for Hello Kitty Theme */
+.confetti {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-size: cover;
+    animation: confettiFall 3s ease-in-out infinite;
+    opacity: 0;
+}
+
+.confetti:nth-child(odd) {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Hello_Kitty_Logo.svg/1200px-Hello_Kitty_Logo.svg.png');
+}
+
+.confetti:nth-child(even) {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Heart_Icon.svg/1200px-Heart_Icon.svg.png');
+}
+
+/* Confetti Fall Animation */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100%) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%) rotate(360deg);
+        opacity: 0;
+    }
+}
+/* Audio Control Container (Positioned at Top-Left) */
+.audio-control {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Heart-shaped Button for Mute/Unmute */
+.heart-icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background-color: #ff80ab;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Heart Shape Creation with Pseudo-elements */
+.heart-icon::before,
+.heart-icon::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ff80ab;
+    border-radius: 50%;
+}
+
+.heart-icon::before {
+    top: -20px;
+    left: 0;
+}
+
+.heart-icon::after {
+    left: 20px;
+    top: 0;
+}
+
+
+/* Hover effect for the button */
+.heart-icon:hover {
+    transform: scale(1.2);  /* Slightly grow on hover */
+}
+
+/* Active (when clicked) effect */
+button:active .heart-icon {
+    transform: scale(0.95); /* Slight shrink on click */
+}
+.wall {
+    width: 40px;
+    height: 40px;
+    background-color: #333; /* Wall color */
+    position: absolute;
+    z-index: 1;
+}
+/* Kitty Animation Container (Positioning Above the UI Box) */
+.kitty-animation {
+    position: absolute;
+    top: 5%; /* Adjust this value to your liking */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;  /* Hidden initially */
+    text-align: center;
+    animation: fadeIn 2s ease-in forwards; /* Fade-in animation */
+}
+
+/* Kitty GIF Styling */
+.kitty-gif {
+    width: 150px;
+    height: 150px;
+    animation: kittyBounce 1.5s ease-in-out infinite; /* Bounce effect */
+}
+
+/* Keyframes for Kitty Bounce */
+@keyframes kittyBounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Fade In Effect for the Kitty Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* Shining Effect for Yes Button */
+.shining-effect {
+    animation: shine 1.5s ease-out infinite; /* Shining animation */
+}
+
+/* Keyframes for Shine Animation */
+@keyframes shine {
+    0% {
+        box-shadow: 0 0 5px 0 rgba(245, 116, 206, 0.5), 0 0 10px 0 rgba(255, 255, 255, 0.5), 0 0 15px 0 rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px 10px rgb(238, 113, 171), 0 0 30px 15px rgba(255, 255, 255, 1), 0 0 45px 20px rgba(255, 255, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px 0 rgba(255, 110, 224, 0.5), 0 0 10px 0 rgba(255, 255, 255, 0.5), 0 0 15px 0 rgba(255, 255, 255, 0.5);
+    }
+}
+/* Kitty Container - Stay in front of the UI box but behind the buttons */
+.kitty-container {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 150px;
+    transition: transform 0.3s ease, animation 0.3s ease-in-out;
+    z-index: 5; /* Higher than the UI box, but lower than buttons */
+}
+
+/* Buttons should be above the Kitty GIF */
+button {
+    position: relative; /* Required to apply z-index */
+    z-index: 10; /* Higher than Kitty GIF */
+}
+
+/* Main UI Box (White Box) */
+.container, .next-page {
+    position: relative;
+    z-index: 4; /* Below the Kitty GIF, but above the background */
+}
+
+/* The maze container, other elements */
+.maze-container {
+    z-index: 1; /* Default value for maze container */
+}
+
+/* Buttons container */
+.buttons {
+    position: relative; /* Ensure buttons are positioned relative to each other */
+}
+
+/* Yes button is positioned above No button */
+.yes {
+    z-index: 2; /* Higher z-index for Yes button */
+    transition: all 0.3s ease-in-out;
+}
+
+.no {
+    z-index: 1; /* Lower z-index for No button */
+    transition: all 0.3s ease-in-out;
+}
+/* Shining effect for the Yes button */
+@keyframes shining {
+    0% {
+        box-shadow: 0 0 10px #ff80ab, 0 0 20px #ff80ab, 0 0 30px #ff80ab;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff80ab, 0 0 30px #ff80ab, 0 0 40px #ff80ab;
+    }
+    100% {
+        box-shadow: 0 0 10px #ff80ab, 0 0 20px #ff80ab, 0 0 30px #ff80ab;
+    }
+}
+
+/* Apply the shining animation to Yes button when it grows */
+.yes {
+    position: relative;
+    z-index: 2; /* Yes button is on top */
+    transition: all 0.3s ease-in-out;
+}
+
+.yes.shine {
+    animation: shining 2s infinite alternate;
+}
+.wall {
+    width: 40px;
+    height: 40px;
+    background-image: url('https://img.freepik.com/premium-photo/pink-brick-wall-with-white-brick-background_322958-1799.jpg?semt=ais_hybrid');
+    background-size: cover;
+    position: absolute;
+}
+/* Audio Control Button (Heart Shape) */
+.audio-control {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 999; /* Ensures it's on top */
+}
+
+.heart-icon {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background-color: #ff80ab;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Create heart shape */
+.heart-icon::before,
+.heart-icon::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ff80ab;
+    border-radius: 50%;
+}
+
+.heart-icon::before {
+    top: -25px;
+    left: 0;
+}
+
+.heart-icon::after {
+    left: 25px;
+    top: 0;
+}
+
+
+
+/* Hover effect for the heart */
+.heart-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Click effect */
+button:active .heart-icon {
+    transform: scale(0.95);
+}
+@keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.typing-text {
+    font-size: 2rem;
+    font-family: 'Pacifico', cursive;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #ff4081;
+    width: 0;
+    animation: typing 3s steps(30) 1s forwards, blink 0.75s step-end infinite;
+}
+
+/* Blink effect for cursor */
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+button:active {
+    transform: scale(0.95); /* Shrink when clicked */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+}
+/* Heart floating animation */
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Heart icon (Hello Kitty theme) */
+.floating-heart {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Hello_Kitty_Logo.svg/1200px-Hello_Kitty_Logo.svg.png') no-repeat center center;
+    background-size: contain;
+    animation: heartFloat 3s ease-in-out infinite;
+}
+
+/* Add random delays for different hearts to float at different times */
+.floating-heart:nth-child(odd) {
+    animation-delay: 1s;
+}
+
+.floating-heart:nth-child(even) {
+    animation-delay: 2s;
+}

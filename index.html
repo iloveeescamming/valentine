@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Will You Be My Valentine?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- Hello Kitty Maze Game -->
+    <div class="maze-container" id="maze-container">
+        <div class="maze">
+            <div class="player" id="player"></div>
+            <div class="end" id="end"></div>
+        </div>
+    </div>
+    
+
+    <!-- Main Page (After Maze Completion) -->
+    <div class="container" id="main-container" style="display: none;">
+        <h1 class="title">Will you be my Valentine my cute merlina?</h1>
+        <div class="heart-container">
+            <div class="heart" id="heart"></div>
+        </div>
+
+        <div class="buttons">
+            <button id="yesButton" class="yes" onclick="handleYes()">Yes!</button>
+            <button id="noButton" class="no" onclick="handleNo()">No...</button>
+        </div>
+
+        <div class="message" id="message"></div>
+    </div>
+
+    <!-- No Button Zone -->
+    <div class="no-zone" id="noZone"></div>
+
+    <!-- Next Page -->
+    <div class="next-page" id="nextPage" style="display:none;">
+        <h1>I love you sosososososo much 💕</h1>
+        <p>I'm so happy with you</p>
+        <button class="love-letter-btn" onclick="showLetter()">Click to read my letter pls</button>
+    </div>
+
+    <!-- Love Letter -->
+    <div class="love-letter" id="loveLetter" style="display:none;">
+        <p>Merlina,</p>
+        <p>You are the most special person in my life. I am so lucky to have you and be with you i would be miserable without you my life has gotten 100x better since i met you, u dont realize how much u help me and heal me im so happy that your mine and that your my valentine, i see a future with you.
+            U dont realize how special u are to me and how proud i am of you ur truly the best thing in my life u make me want to be a better person for you and to be with you cause i dont wanna disappoint you, i love you and i love everything about you every little thing like your cute laugh the way u breath even your cute little stutters everything about you is perfect
+            and i fall more and more inlove with you every single day i appreciate you for caring for me and for always being here for me so i wanna thank you by making a website for you, i know its bad its my first time coding and making a website but i tried my best because i love you and i wanna make u
+        </p>
+        <button onclick="hideLetter()">Close</button>
+    </div>
+
+    <div id="confetti"></div> <!-- Confetti target -->
+
+    <audio id="backgroundMusic" loop>
+        <source src="Montell_Fish_-_Fall_in_Love_With_You_CeeNaija.com_.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
+<!-- Heart-Shaped Audio Control Button -->
+<div class="audio-control">
+    <button id="audioToggle" onclick="toggleMusic()">
+        <div class="heart-icon" id="heartIcon">
+            <div class="mute-line" id="muteLine"></div>
+        </div>
+    </button>
+</div>
+
+<!-- Kitty Animation Container (Positioning Above the UI Box) -->
+<div class="kitty-animation" id="kittyAnimation">
+    <img src="https://i.gifer.com/origin/1c/1c29154636f73295ad5fe84068c7a180.gif" alt="Hello Kitty GIF" class="kitty-gif">
+</div>
