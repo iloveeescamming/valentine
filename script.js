@@ -275,4 +275,82 @@ function handleNo() {
         
         isPlaying = !isPlaying;
     }
-  
+    function winGame() {
+        // Fade out maze container
+        mazeContainer.classList.add('fade-out');
+    
+        // Remove the maze title
+        const mazeTitle = document.getElementById("mazeTitle");
+        if (mazeTitle) {
+            mazeTitle.style.display = "none";
+        }
+    
+        setTimeout(function() {
+            mazeContainer.style.display = 'none';  // Hide maze
+            mainContainer.style.display = 'block'; // Show main UI
+            mainContainer.classList.add('fade-in'); // Add fade-in class for smooth transition
+    
+            // Show Hello Kitty GIF with animation
+            let kittyAnimation = document.getElementById("kittyAnimation");
+            kittyAnimation.style.display = 'block';  // Show the kitty GIF container
+        }, 1000); // Match the fade-out time (1s)
+    }
+    function showLetter() {
+        const loveLetter = document.getElementById("loveLetter");
+        loveLetter.style.display = "block";
+        loveLetter.classList.add('fade-in'); // Apply fade-in effect
+    
+        const messageContent = `Merlina,
+        
+    You are the most special person in my life. I am so lucky to have you and be with you. I would be miserable without you. My life has gotten 100x better since I met you. You don’t realize how much you help me and heal me. I’m so happy that you're mine and my Valentine. I see a future with you...
+    
+    [The rest of your heartfelt message...]`;
+    
+        // Add typing animation
+        typeMessage("loveLetterText", messageContent);
+    }
+    
+    function typeMessage(elementId, message) {
+        const element = document.getElementById(elementId);
+        element.innerHTML = ''; // Clear previous content
+        let index = 0;
+    
+        function typeNextChar() {
+            if (index < message.length) {
+                element.innerHTML += message[index++];
+                setTimeout(typeNextChar, 50); // Typing speed
+            }
+        }
+    
+        typeNextChar();
+    }
+    function winGame() {
+        // Fade out maze container
+        mazeContainer.classList.add('fade-out');
+    
+        // Remove the maze title
+        const mazeTitle = document.getElementById("mazeTitle");
+        if (mazeTitle) {
+            mazeTitle.style.display = "none";
+        }
+    
+        setTimeout(function () {
+            mazeContainer.style.display = 'none';  // Hide maze
+            mainContainer.style.display = 'block'; // Show main UI
+            mainContainer.classList.add('fade-in'); // Add fade-in class for smooth transition
+    
+            // Show Hello Kitty GIF centered above the text
+            let kittyAnimation = document.getElementById("kittyAnimation");
+            kittyAnimation.style.display = 'block';  // Show the kitty GIF container
+            kittyAnimation.classList.add('fade-in');
+        }, 1000); // Match the fade-out time (1s)
+    }
+    const clickSound = document.getElementById("clickSound");
+
+// Attach the click sound to all buttons
+document.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+        clickSound.currentTime = 0; // Reset audio to start
+        clickSound.play();
+    });
+});

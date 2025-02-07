@@ -736,3 +736,63 @@ button:active {
 .floating-heart:nth-child(even) {
     animation-delay: 2s;
 }
+
+#mazeTitle {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ff80ab;
+    font-size: 3rem;
+    z-index: 10;
+    pointer-events: none;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 0 0 5px #ff80ab, 0 0 10px #ff80ab, 0 0 15px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff80ab;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    10% {
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ff80ab, 0 0 15px #ffffff;
+    }
+    10% {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff4081;
+    }
+}
+
+/* Fade-in effect for the love letter */
+.fade-in {
+    animation: fadeIn 1.5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typing effect styling */
+#loveLetterText {
+    font-family: 'Pacifico', cursive;
+    white-space: pre-wrap;
+    color: #ff4081;
+}
+.kitty-animation {
+    position: absolute;
+    top: 4%; /* Adjust this percentage as needed */
+    left: 50%;
+    transform: translate(-90%, -100%); /* Center horizontally and place just above the text */
+    z-index: 100; /* Ensure it's above other elements */
+    display: none;
+}
+
+.kitty-gif {
+    width: 150px;
+    height: 150px;
+    animation: kittyBounce 1.5s ease-in-out infinite;
+}
